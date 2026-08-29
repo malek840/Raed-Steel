@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const checkoutBtn = document.querySelector(".btn-checkout");
 
   // رقم الواتساب المخصص لاستقبال الطلبات
-  const phoneNumber = "201097074813";
+  const phoneNumber = "201019835001";
 
   // مصفوفة لحفظ منتجات السلة
   let cart = [];
