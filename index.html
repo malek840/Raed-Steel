@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Raed Steel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- الهيدر الرئيسي -->
+  <header>
+    <h1>Raed Steel</h1>
+    <div class="cart-icon-wrapper" id="cart-btn">
+      🛒 Basket (<span id="cart-count">0</span>)
+    </div>
+  </header>
+
+  <!-- زر تغيير الوضع (داكن / فاتح) الثابت في جانب الشاشة -->
+  <button id="theme-toggle" class="theme-toggle-btn">
+    🌙 Dark Mode
+  </button>
+
+  <!-- القائمة الجانبية لسلة الشراء -->
+  <div class="cart-sidebar" id="cart-sidebar">
+    <div class="cart-header">
+      <h2>سلة الشراء</h2>
+      <button id="close-cart" class="close-btn">&times;</button>
+    </div>
+    
+    <div class="cart-items" id="cart-items">
+      <p class="empty-cart-msg">السلة فارغة حالياً</p>
+    </div>
+
+    <!-- نموذج بيانات العميل الجديد -->
+    <div class="customer-info" style="padding: 15px; border-top: 1px solid #eee;">
+      <h3 style="margin-bottom: 10px; font-size: 16px;">بيانات العميل:</h3>
+      <input type="text" id="cust-name" placeholder="الاسم" style="width: 100%; padding: 8px; margin-bottom: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
+      
+      <!-- اختيار كود الدولة + رقم الهاتف أرقام فقط -->
+      <div style="display: flex; gap: 5px; margin-bottom: 8px;">
+        <select id="cust-country-code" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px; direction: ltr;">
+          <option value="+20">مصر (+20)</option>
+          <option value="+966">السعودية (+966)</option>
+          <option value="+971">الإمارات (+971)</option>
+          <option value="+965">الكويت (+965)</option>
+          <option value="+974">قطر (+974)</option>
+          <option value="+968">عُمان (+968)</option>
+          <option value="+973">البحرين (+973)</option>
+          <option value="+962">الأردن (+962)</option>
+          <option value="+1">أمريكا/كندا (+1)</option>
+          <option value="+44">المملكة المتحدة (+44)</option>
+        </select>
+        <input type="text" id="cust-phone" placeholder="رقم الهاتف (أرقام فقط)" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '');" style="flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
+      </div>
+
+      <input type="email" id="cust-email" placeholder="الإيميل" style="width: 100%; padding: 8px; margin-bottom: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
+      <input type="text" id="cust-location" placeholder="المكان (العنوان)" style="width: 100%; padding: 8px; margin-bottom: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
+    </div>
+
+    <div class="cart-footer">
+      <button class="btn-checkout">إتمام الطلب عبر واتساب</button>
+    </div>
+  </div>
+  <div class="cart-overlay" id="cart-overlay"></div>
+
+  <!-- شبكة المنتجات الـ 19 كاملة -->
+  <div class="container">
+    <div class="products-grid">
+      
+      <!-- قطعة 1 -->
+      <div class="product-card">
+        <div class="product-img-container">
+          <img src="image3.jpeg" alt="طاولة قهوة دائرية زجاجية بقاعدة شبكية ذهبية" class="product-img" onerror="this.src='https://via.placeholder.com/300x200?text=صورة+1'">
+        </div>
+        <div class="product-info">
+          <div class="product-title">طاولة قهوة دائرية زجاجية بقاعدة شبكية ذهبية</div>
+          <div class="color-selection">
+            <label>اختر اللون:</label>
+            <select class="color-select">
+              <option value="ذهبي">ذهبي</option>
+              <option value="سيلفر">سيلفر</option>
+              <option value="أسود">أسود</option>
+            </select>
+          </div>
+          <div class="product-price">السعر حسب الطلب</div>
+          <button class="btn-buy">أضف للسلة</button>
+        </div>
+      </div>
+
+      <!-- قطعة 2 -->
+      <div class="product-card">
+        <div class="product-img-container">
+          <img src="image.jpeg" alt="طاولة قهوة دائرية زجاجية بقاعدة أنابيب متدرجة" class="product-img" onerror="this.src='https://via.placeholder.com/300x200?text=صورة+2'">
+        </div>
+        <div class="product-info">
+          <div class="product-title">طاولة قهوة دائرية زجاجية بقاعدة أنابيب متدرجة</div>
+          <div class="color-selection">
+            <label>اختر اللون:</label>
+            <select class="color-select">
+              <option value="ذهبي">ذهبي</option>
+              <option value="سيلفر">سيلفر</option>
+              <option value="أسود">أسود</option>
+            </select>
+          </div>
+          <div class="product-price">السعر حسب الطلب</div>
+          <button class="btn-buy">أضف للسلة</button>
+        </div>
+      </div>
+
+      <!-- قطعة 3 -->
+      <div class="product-card">
+        <div class="product-img-container">
+          <img src="image2.jpeg" alt="طاولة قهوة بيضاوية بقاعدة خطوط متوازية ذهبية" class="product-img" onerror="this.src='https://via.placeholder.com/300x200?text=صورة+3'">
+        </div>
+        <div class="product-info">
+          <div class="product-title">طاولة قهوة بيضاوية بقاعدة خطوط متوازية ذهبية</div>
+          <div class="color-selection">
+            <label>اختر اللون:</label>
+            <select class="color-select">
+              <option value="ذهبي">ذهبي</option>
+              <option value="سيلفر">سيلفر</option>
+              <option value="أسود">أسود</option>
+            </select>
+          </div>
+          <div class="product-price">السعر حسب الطلب</div>
+          <button class="btn-buy">أضف للسلة</button>
+        </div>
+      </div>
+
+      <!-- قطعة 4 -->
+      <div class="product-card">
+        <div class="product-img-container">
+          <img src="image4.jpeg" alt="طقم طاولة قهوة وجانبية بقواعد مخروطية ذهبية" class="product-img" onerror="this.src='https://via.placeholder.com/300x200?text=صورة+4'">
+        </div>
+        <div class="product-info">
+          <div class="product-title">طقم طاولة قهوة وجانبية بقواعد مخروطية ذهبية</div>
+          <div class="color-selection">
+            <label>اختر اللون:</label>
+            <select class="color-select">
+              <option value="ذهبي">ذهبي</option>
+              <option value="سيلفر">سيلفر</option>
+              <option value="أسود">أسود</option>
+            </select>
+          </div>
+          <div class="product-price">السعر حسب الطلب</div>
+          <button class="btn-buy">أضف للسلة</button>
+        </div>
+      </div>
+
+      <!-- قطعة 5 -->
+      <div class="product-card">
+        <div class="product-img-container">
+          <img src="image6 (1).jpeg" alt="طاولة قهوة طويلة بقاعدة ذهبية وكرة معلقة" class="product-img" onerror="this.src='https://via.placeholder.com/300x200?text=صورة+5'">
+        </div>
+        <div class="product-info">
+          <div class="product-title">طاولة قهوة طويلة بقاعدة ذهبية وكرة معلقة</div>
+          <div class="color-selection">
+            <label>اختر اللون:</label>
+            <select class="color-select">
+              <option value="ذهبي">ذهبي</option>
+              <option value="سيلفر">سيلفر</option>
+              <option value="أسود">أسود</option>
+            </select>
+          </div>
+          <div class="product-price">السعر حسب الطلب</div>
+          <button class="btn-buy">أضف للسلة</button>
+        </div>
+      </div>
+
+      <!-- قطعة 6 -->
+      <div class="product-card">
+        <div class="product-img-container">
+          <img src="image6 (2).jpeg" alt="طقم طاولات خدمة 3 قطع (أسود ورخامي)" class="product-img" onerror="this.src='https://via.placeholder.com/300x200?text=صورة+6'">
+        </div>
+        <div class="product-info">
+          <div class="product-title">طقم طاولات خدمة 3 قطع (أسود ورخامي)</div>
+          <div class="color-selection">
+            <label>اختر اللون:</label>
+            <select class="color-select">
+              <option value="أسود ورخامي">أسود ورخامي</option>
+              <option value="ذهبي">ذهبي</option>
+              <option value="سيلفر">سيلفر</option>
+            </select>
+          </div>
+          <div class="product-price">السعر حسب الطلب</div>
+          <button class="btn-buy">أضف للسلة</button>
+        </div>
+      </div>
+
+      <!-- قطعة 7 -->
+      <div class="product-card">
+        <div class="product-img-container">
+          <img src="image6 (4).jpeg" alt="طقم ترايزرات 3 قطع متدرجة بقواعد ذهبية مائلة" class="product-img" onerror="this.src='https://via.placeholder.com/300x200?text=صورة+7'">
+        </div>
+        <div class="product-info">
+          <div class="product-title">طقم ترايزرات 3 قطع متدرجة بقواعد ذهبية مائلة</div>
+          <div class="color-selection">
+            <label>اختر اللون:</label>
+            <select class="color-select">
+              <option value="ذهبي">ذهبي</option>
+              <option value="سيلفر">سيلفر</option>
+              <option value="أسود">أسود</option>
+            </select>
+          </div>
+          <div class="product-price">السعر حسب الطلب</div>
+          <button class="btn-buy">أضف للسلة</button>
+        </div>
+      </div>
+
+      <!-- قطعة 8 -->
+      <div class="product-card">
+        <div class="product-img-container">
+          <img src="image6 (5).jpeg" alt="طقم طاولات متداخلة 2 قطعة (رخام أسود)" class="product-img" onerror="this.src='https://via.placeholder.com/300x200?text=صورة+8'">
+        </div>
+        <div class="product-info">
+          <div class="product-title">طقم طاولات متداخلة 2 قطعة (رخام أسود)</div>
+          <div class="color-selection">
+            <label>اختر اللون:</label>
+            <select class="color-select">
+              <option value="رخام أسود">رخام أسود</option>
+              <option value="ذهبي">ذهبي</option>
+              <option value="سيلفر">سيلفر</option>
+            </select>
+          </div>
+          <div class="product-price">السعر حسب الطلب</div>
+          <button class="btn-buy">أضف للسلة</button>
+        </div>
+      </div>
+
+      <!-- قطعة 9 -->
+      <div class="product-card">
+        <div class="product-img-container">
+          <img src="image6 (6).jpeg" alt="طقم طاولات خدمة سيلفر 2 قطعة (قواعد مخروطية)" class="product-img" onerror="this.src='https://via.placeholder.com/300x200?text=صورة+9'">
+        </div>
+        <div class="product-info">
+          <div class="product-title">طقم طاولات خدمة سيلفر 2 قطعة (قواعد مخروطية)</div>
+          <div class="color-selection">
+            <label>اختر اللون:</label>
+            <select class="color-select">
+              <option value="سيلفر">سيلفر</option>
+              <option value="ذهبي">ذهبي</option>
+              <option value="أسود">أسود</option>
+            </select>
+          </div>
+          <div class="product-price">السعر حسب الطلب</div>
+          <button class="btn-buy">أضف للسلة</button>
+        </div>
+      </div>
+
+      <!-- قطعة 10 -->
+      <div class="product-card">
+        <div class="product-img-container">
+          <img src="image6 (7).jpeg" alt="طقم طاولات خدمة مربعة 3 قطع بقواعد X ذهبية" class="product-img" onerror="this.src='https://via.placeholder.com/300x200?text=صورة+10'">
+        </div>
+        <div class="product-info">
+          <div class="product-title">طقم طاولات خدمة مربعة 3 قطع بقواعد X ذهبية</div>
+          <div class="color-selection">
+            <label>اختر اللون:</label>
+            <select class="color-select">
+              <option value="ذهبي">ذهبي</option>
+              <option value="سيلفر">سيلفر</option>
+              <option value="أسود">أسود</option>
+            </select>
+          </div>
+          <div class="product-price">السعر حسب الطلب</div>
+          <button class="btn-buy">أضف للسلة</button>
+        </div>
+      </div>
+
+      <!-- قطعة 11 -->
+      <div class="product-card">
+        <div class="product-img-container">
+          <img src="image6 (8).jpeg" alt="طقم طاولات خدمة سيلفر بإنحناءات متداخلة" class="product-img" onerror="this.src='https://via.placeholder.com/300x200?text=صورة+11'">
+        </div>
+        <div class="product-info">
+          <div class="product-title">طقم طاولات خدمة سيلفر بإنحناءات متداخلة</div>
+          <div class="color-selection">
+            <label>اختر اللون:</label>
+            <select class="color-select">
+              <option value="سيلفر">سيلفر</option>
+              <option value="ذهبي">ذهبي</option>
+              <option value="أسود">أسود</option>
+            </select>
+          </div>
+          <div class="product-price">السعر حسب الطلب</div>
+          <button class="btn-buy">أضف للسلة</button>
+        </div>
+      </div>
+
+      <!-- قطعة 12 -->
+      <div class="product-card">
+        <div class="product-img-container">
+          <img src="image6 (9).jpeg" alt="طاولة جانبية دائرية مع كرسي أوف وايت" class="product-img" onerror="this.src='https://via.placeholder.com/300x200?text=صورة+12'">
+        </div>
+        <div class="product-info">
+          <div class="product-title">طاولة جانبية دائرية مع كرسي أوف وايت</div>
+          <div class="color-selection">
+            <label>اختر اللون:</label>
+            <select class="color-select">
+              <option value="أوف وايت / ذهبي">أوف وايت / ذهبي</option>
+              <option value="أوف وايت / سيلفر">أوف وايت / سيلفر</option>
+            </select>
+          </div>
+          <div class="product-price">السعر حسب الطلب</div>
+          <button class="btn-buy">أضف للسلة</button>
+        </div>
+      </div>
+
+      <!-- قطعة 13 -->
+      <div class="product-card">
+        <div class="product-img-container">
+          <img src="image6 (10).jpeg" alt="طاولة جانبية بسطح خشبي بني وقاعدة ذهبية شعاعية" class="product-img" onerror="this.src='https://via.placeholder.com/300x200?text=صورة+13'">
+        </div>
+        <div class="product-info">
+          <div class="product-title">طاولة جانبية بسطح خشبي بني وقاعدة ذهبية شعاعية</div>
+          <div class="color-selection">
+            <label>اختر اللون:</label>
+            <select class="color-select">
+              <option value="ذهبي">ذهبي</option>
+              <option value="سيلفر">سيلفر</option>
+              <option value="أسود">أسود</option>
+            </select>
+          </div>
+          <div class="product-price">السعر حسب الطلب</div>
+          <button class="btn-buy">أضف للسلة</button>
+        </div>
+      </div>
+
+      <!-- قطعة 14 -->
+      <div class="product-card">
+        <div class="product-img-container">
+          <img src="image6 (11).jpeg" alt="طاولة جانبية بسطح رخام أبيض وقاعدة هندسية" class="product-img" onerror="this.src='https://via.placeholder.com/300x200?text=صورة+14'">
+        </div>
+        <div class="product-info">
+          <div class="product-title">طاولة جانبية بسطح رخام أبيض وقاعدة هندسية</div>
+          <div class="color-selection">
+            <label>اختر اللون:</label>
+            <select class="color-select">
+              <option value="ذهبي">ذهبي</option>
+              <option value="سيلفر">سيلفر</option>
+              <option value="أسود">أسود</option>
+            </select>
+          </div>
+          <div class="product-price">السعر حسب الطلب</div>
+          <button class="btn-buy">أضف للسلة</button>
+        </div>
+      </div>
+
+      <!-- قطعة 15 -->
+      <div class="product-card">
+        <div class="product-img-container">
+          <img src="image6 (12).jpeg" alt="طاولة كونسول رخام أبيض بقاعدة ذهبية حلزونية" class="product-img" onerror="this.src='https://via.placeholder.com/300x200?text=صورة+15'">
+        </div>
+        <div class="product-info">
+          <div class="product-title">طاولة كونسول رخام أبيض بقاعدة ذهبية حلزونية</div>
+          <div class="color-selection">
+            <label>اختر اللون:</label>
+            <select class="color-select">
+              <option value="ذهبي">ذهبي</option>
+              <option value="سيلفر">سيلفر</option>
+              <option value="أسود">أسود</option>
+            </select>
+          </div>
+          <div class="product-price">السعر حسب الطلب</div>
+          <button class="btn-buy">أضف للسلة</button>
+        </div>
+      </div>
+
+      <!-- قطعة 16 -->
+      <div class="product-card">
+        <div class="product-img-container">
+          <img src="image7 (1).jpeg" alt="طاولة كونسول مودرن بقاعدة كأس وكرة ذهبية" class="product-img" onerror="this.src='https://via.placeholder.com/300x200?text=صورة+16'">
+        </div>
+        <div class="product-info">
+          <div class="product-title">طاولة كونسول مودرن بقاعدة كأس وكرة ذهبية</div>
+          <div class="color-selection">
+            <label>اختر اللون:</label>
+            <select class="color-select">
+              <option value="ذهبي">ذهبي</option>
+              <option value="سيلفر">سيلفر</option>
+              <option value="أسود">أسود</option>
+            </select>
+          </div>
+          <div class="product-price">السعر حسب الطلب</div>
+          <button class="btn-buy">أضف للسلة</button>
+        </div>
+      </div>
+
+      <!-- قطعة 17 -->
+      <div class="product-card">
+        <div class="product-img-container">
+          <img src="image7 (2).jpeg" alt="طاولة كونسول ذهبية بأقواس منحنية ومتقاطعة" class="product-img" onerror="this.src='https://via.placeholder.com/300x200?text=صورة+17'">
+        </div>
+        <div class="product-info">
+          <div class="product-title">طاولة كونسول ذهبية بأقواس منحنية ومتقاطعة</div>
+          <div class="color-selection">
+            <label>اختر اللون:</label>
+            <select class="color-select">
+              <option value="ذهبي">ذهبي</option>
+              <option value="سيلفر">سيلفر</option>
+              <option value="أسود">أسود</option>
+            </select>
+          </div>
+          <div class="product-price">السعر حسب الطلب</div>
+          <button class="btn-buy">أضف للسلة</button>
+        </div>
+      </div>
+
+      <!-- قطعة 18 -->
+      <div class="product-card">
+        <div class="product-img-container">
+          <img src="image7 (3).jpeg" alt="طاولة كونسول بقاعدة مربعات مائلة متقاطعة" class="product-img" onerror="this.src='https://via.placeholder.com/300x200?text=صورة+18'">
+        </div>
+        <div class="product-info">
+          <div class="product-title">طاولة كونسول بقاعدة مربعات مائلة متقاطعة</div>
+          <div class="color-selection">
+            <label>اختر اللون:</label>
+            <select class="color-select">
+              <option value="ذهبي">ذهبي</option>
+              <option value="سيلفر">سيلفر</option>
+              <option value="أسود">أسود</option>
+            </select>
+          </div>
+          <div class="product-price">السعر حسب الطلب</div>
+          <button class="btn-buy">أضف للسلة</button>
+        </div>
+      </div>
+
+      <!-- قطعة 19 -->
+      <div class="product-card">
+        <div class="product-img-container">
+          <img src="image7 (4).jpeg" alt="مرآة جدارية كبيرة بحلقات ودوائر ذهبية متداخلة" class="product-img" onerror="this.src='https://via.placeholder.com/300x200?text=صورة+19'">
+        </div>
+        <div class="product-info">
+          <div class="product-title">مرآة جدارية كبيرة بحلقات ودوائر ذهبية متداخلة</div>
+          <div class="color-selection">
+            <label>اختر اللون:</label>
+            <select class="color-select">
+              <option value="ذهبي">ذهبي</option>
+              <option value="سيلفر">سيلفر</option>
+              <option value="أسود">أسود</option>
+            </select>
+          </div>
+          <div class="product-price">السعر حسب الطلب</div>
+          <button class="btn-buy">أضف للسلة</button>
+        </div>
+      </div>
+
+      <!-- قطعة 20 -->
+      <div class="product-card">
+        <div class="product-img-container">
+          <img src="image7 (5).jpeg" alt="طاولة ديكور عصرية بتصميم هندسي متقدم" class="product-img" onerror="this.src='https://via.placeholder.com/300x200?text=صورة+20'">
+        </div>
+        <div class="product-info">
+          <div class="product-title">طاولة ديكور عصرية بتصميم هندسي متقدم</div>
+          <div class="color-selection">
+            <label>اختر اللون:</label>
+            <select class="color-select">
+              <option value="ذهبي">ذهبي</option>
+              <option value="سيلفر">سيلفر</option>
+              <option value="أسود">أسود</option>
+            </select>
+          </div>
+          <div class="product-price">السعر حسب الطلب</div>
+          <button class="btn-buy">أضف للسلة</button>
+        </div>
+      </div>
+
+      <!-- قطعة 21 -->
+      <div class="product-card">
+        <div class="product-img-container">
+          <img src="image7 (6).jpeg" alt="طاولة جانبية فاخرة برخام طبيعي وقاعدة ذهبية" class="product-img" onerror="this.src='https://via.placeholder.com/300x200?text=صورة+21'">
+        </div>
+        <div class="product-info">
+          <div class="product-title">طاولة جانبية فاخرة برخام طبيعي وقاعدة ذهبية</div>
+          <div class="color-selection">
+            <label>اختر اللون:</label>
+            <select class="color-select">
+              <option value="ذهبي">ذهبي</option>
+              <option value="سيلفر">سيلفر</option>
+              <option value="أسود">أسود</option>
+            </select>
+          </div>
+          <div class="product-price">السعر حسب الطلب</div>
+          <button class="btn-buy">أضف للسلة</button>
+        </div>
+      </div>
+
+      <!-- قطعة 22 -->
+      <div class="product-card">
+        <div class="product-img-container">
+          <img src="image8 (1).jpeg" alt="مرآة ديكورية مع إطار ذهبي منحوت يدوياً" class="product-img" onerror="this.src='https://via.placeholder.com/300x200?text=صورة+22'">
+        </div>
+        <div class="product-info">
+          <div class="product-title">مرآة ديكورية مع إطار ذهبي منحوت يدوياً</div>
+          <div class="color-selection">
+            <label>اختر اللون:</label>
+            <select class="color-select">
+              <option value="ذهبي">ذهبي</option>
+              <option value="سيلفر">سيلفر</option>
+              <option value="أسود">أسود</option>
+            </select>
+          </div>
+          <div class="product-price">السعر حسب الطلب</div>
+          <button class="btn-buy">أضف للسلة</button>
+        </div>
+      </div>
+
+      <!-- قطعة 23 -->
+      <div class="product-card">
+        <div class="product-img-container">
+          <img src="image8 (2).jpeg" alt="طقم ديكور متكامل بتصاميم حديثة ومتناسقة" class="product-img" onerror="this.src='https://via.placeholder.com/300x200?text=صورة+23'">
+        </div>
+        <div class="product-info">
+          <div class="product-title">طقم ديكور متكامل بتصاميم حديثة ومتناسقة</div>
+          <div class="color-selection">
+            <label>اختر اللون:</label>
+            <select class="color-select">
+              <option value="ذهبي">ذهبي</option>
+              <option value="سيلفر">سيلفر</option>
+              <option value="أسود">أسود</option>
+            </select>
+          </div>
+          <div class="product-price">السعر حسب الطلب</div>
+          <button class="btn-buy">أضف للسلة</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
